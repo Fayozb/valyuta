@@ -34,26 +34,22 @@ class _HomePageState extends State<HomePage> {
       _currencies = [];
     });
     final client = GetIt.I.get<HttpService>().client();
-    final response = await client.get('/uz/arkhiv-kursov-valyut/json/all/');
+    final response = await client.get('/uz/arkhiv-kursov-valyut/json/all/${AppHelpers.getFormattedDate(_selectedDate)}/');
     debugPrint('===> $response');
     setState(() {
       _isLoading = false;
-      _currencies = CurrencyResponse
-          .fromJson(response.data)
-          .data ?? [];
+      _currencies = CurrencyResponse.fromJson(response.data).data ?? [];
     });
     _refreshController.loadComplete();
   }
 
   Future<void> _refreshCurency() async {
     final client = GetIt.I.get<HttpService>().client();
-    final response = await client.get('/uz/arkhiv-kursov-valyut/json/all/');
+    final response = await client.get('/uz/arkhiv-kursov-valyut/json/all/${AppHelpers.getFormattedDate(_selectedDate)}/');
     debugPrint('===> $response');
     setState(() {
       _isLoading = false;
-      _currencies = CurrencyResponse
-          .fromJson(response.data)
-          .data ?? [];
+      _currencies = CurrencyResponse.fromJson(response.data).data ?? [];
     });
     _refreshController.refreshCompleted();
   }
@@ -67,39 +63,44 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-          children: [
-            const SizedBox(
-              height: 40,
-            ),
-            OutlinedButton(
-              onPressed: () {
-                showDatePicker(context: context,
-                    initialDate: _selectedDate,
-                    firstDate: (DateTime.now().subtract(
-                        const Duration(days: 30))),
-                    lastDate: DateTime.now()
-                );
-              },
-              child: Text(
-                AppHelpers.getFormattedDate(_selectedDate),
-              ),
-            ),
-            Expanded(
-              child: _isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : SmartRefresher(
-                controller: _refreshController,
-                onRefresh: _refreshCurency,
-                child: ListView.builder(
-                    itemCount: _currencies.length,
-                    itemBuilder: (context, index) {
-                      return CurrencyItems(
-                        currency: _currencies[index],
-                      );
-                    }),
-              ),
-            ),
-          ],
-        ));
+      children: [
+        const SizedBox(
+          height: 40,
+        ),
+        OutlinedButton(
+          onPressed: () async {
+            final DateTime? changedDate = await showDatePicker(
+                context: context,
+                initialDate: _selectedDate,
+                firstDate: (DateTime.now().subtract(const Duration(days: 30))),
+                lastDate: DateTime.now());
+            if (changedDate != null) {
+              setState(() {
+                _selectedDate = changedDate;
+                _getCurrencies();
+              });
+            }
+          },
+          child: Text(
+            AppHelpers.getFormattedDate(_selectedDate),
+          ),
+        ),
+        Expanded(
+          child: _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : SmartRefresher(
+                  controller: _refreshController,
+                  onRefresh: _refreshCurency,
+                  child: ListView.builder(
+                      itemCount: _currencies.length,
+                      itemBuilder: (context, index) {
+                        return CurrencyItems(
+                          currency: _currencies[index],
+                        );
+                      }),
+                ),
+        ),
+      ],
+    ));
   }
 }
