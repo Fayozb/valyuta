@@ -1,3 +1,4 @@
+import 'package:currency_converter/app_helpers.dart';
 import 'package:currency_converter/converter_page.dart';
 import 'package:currency_converter/currency.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +8,12 @@ import 'home_page.dart';
 
 class CurrencyItems extends StatelessWidget {
   final Currency currency;
+  final String locale;
+
   const CurrencyItems({
     super.key,
     required this.currency,
+    required this.locale,
   });
 
   @override
@@ -20,7 +24,7 @@ class CurrencyItems extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (_) => ConverterPage(
-              currency: currency,
+              currency: currency,locale: locale,
             ),
           ),
         );
@@ -33,7 +37,9 @@ class CurrencyItems extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('${currency.ccyNmUZ}'),
+                Text(
+                  AppHelpers.getCurrencyTitleByLocale(currency, locale),
+                ),
                 Text(
                   NumberFormat.currency(symbol: 'UZS').format(
                     double.tryParse('${currency.rate} '),
