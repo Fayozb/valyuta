@@ -9,11 +9,12 @@ import 'home_page.dart';
 class CurrencyItems extends StatelessWidget {
   final Currency currency;
   final String locale;
-
+  final DateTime selectedDate;
   const CurrencyItems({
     super.key,
     required this.currency,
     required this.locale,
+    required this.selectedDate
   });
 
   @override
@@ -24,49 +25,54 @@ class CurrencyItems extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (_) => ConverterPage(
-              currency: currency,locale: locale,
+              currency: currency,
+              locale: locale,
+              seledtedDate: selectedDate,
             ),
           ),
         );
       },
       child: Container(
+        color: Colors.white.withOpacity(0.2),
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Row(
           children: [
+            Expanded(
+              child: Text(
+                AppHelpers.getCurrencyTitleByLocale(currency, locale),
+              ),
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  AppHelpers.getCurrencyTitleByLocale(currency, locale),
-                ),
-                Text(
-                  NumberFormat.currency(symbol: 'UZS').format(
+                  NumberFormat.currency(symbol: 'UZS  ').format(
                     double.tryParse('${currency.rate} '),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('${currency.ccy}'),
                 SizedBox(
-                  width: 260,
+                  width: 20,
+                ),
+                Text(
+                  '${(currency.diff?.startsWith('-') ?? false) ? '${currency.diff}' : '+${currency.diff}'}',
+                  style: TextStyle(
+                      color: (currency.diff?.startsWith('-') ?? false)
+                          ? Colors.red[800]
+                          : Colors.green[800]),
+                ),
+                SizedBox(
+                  width: 20,
                 ),
                 (currency.diff?.startsWith('-') ?? false)
                     ? Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.red,
+                        Icons.south_east,
+                        color: Colors.red[800],
                       )
                     : Icon(
-                        Icons.keyboard_arrow_up,
-                        color: Colors.green,
+                        Icons.north_east,
+                        color: Colors.green[700],
                       ),
-                Text('${currency.diff}'),
               ],
             ),
           ],

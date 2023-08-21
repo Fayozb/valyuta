@@ -1,4 +1,15 @@
 {
-  "enterValue" : "Qiymatni kiriting",
-  "currencyConverter": "Valyuta konvertori"
-  }
+  "currencyConverter": "Valyuta konvertori",
+  "rateonplaymarket": "Play Marketda Baholang",
+  "programcode": "Dastur kodi",
+  "ourtelegramchannel": "Telegram kanalimiz",
+  "weareonfacebook": "Biz Facebookda",
+  "weareontwitter": "Biz Twitterda",
+  "weareoninstagram": "Biz Instagramda",
+  "opinionforconsideration": "Fikr mulohaza",
+  "abouttheprogram": "Dastur haqida",
+  "thebank": "O'zbekiston markaziy banki ",
+  "banktexti": " ochiq ma'lumotlari asosida tayyorlangan. Dastur ochiq kodli bo'lib, ",
+  "banktext": " asosida tarqatiladi.",
+  "uzbeksum": "O'zbekiston so'mi"
+}

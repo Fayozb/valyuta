@@ -1,4 +1,16 @@
 {
-  "enterValue" : "Введите значение",
-  "currencyConverter": "Конвертер валют"
+
+  "currencyConverter": "Конвертер валют",
+  "rateonplaymarket": "Ставка на Play Market",
+  "programcode": "Программный Код",
+  "ourtelegramchannel": "Телеграм-канал",
+  "weareonfacebook": "Фейсбук",
+  "weareontwitter": "Твиттер",
+  "weareoninstagram": "Инстаграм",
+  "opinionforconsideration": "Обратная связ",
+  "abouttheprogram": "O Программе",
+  "thebank": "Центральный банк Узбекистана",
+  "banktexti": " подготовлены на основе открытых данных. Программное обеспечение с открытым исходным кодом и ",
+  "banktext": " распределяется на основе.",
+  "uzbeksum": "Узбекский сум"
 }

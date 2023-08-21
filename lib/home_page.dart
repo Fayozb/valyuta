@@ -1,6 +1,6 @@
-
 import 'dart:convert';
 
+import 'package:currency_converter/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:currency_converter/app_helpers.dart';
 import 'package:currency_converter/currency_items.dart';
@@ -8,12 +8,13 @@ import 'package:currency_converter/drawer.dart';
 import 'package:currency_converter/http_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'drawer.dart';
 import 'currency.dart';
 import 'app_helpers.dart';
 import 'currency_items.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
@@ -28,10 +29,9 @@ class _HomePageState extends State<HomePage> {
   List<Currency> _currencies = [];
   late RefreshController _refreshController;
   late DateTime _selectedDate;
-  String _locale = 'uz';
-  late Currency currency;
-  late String locale ;
 
+  late Currency currency;
+  late String locale;
 
   @override
   void initState() {
@@ -39,7 +39,6 @@ class _HomePageState extends State<HomePage> {
     _refreshController = RefreshController();
     _selectedDate = DateTime.now();
     _getCurrencies();
-
   }
 
   Future<void> _getCurrencies() async {
@@ -48,7 +47,6 @@ class _HomePageState extends State<HomePage> {
       _currencies = [];
       currency = Currency();
       locale = 'uz';
-
     });
     final client = GetIt.I.get<HttpService>().client();
     final response = await client.get(
@@ -78,22 +76,31 @@ class _HomePageState extends State<HomePage> {
     _refreshController.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
+    final translate = AppLocalizations.of(context);
+    final provider = Provider.of<AppProvider>(context);
     return Scaffold(
       drawer: HomeDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent,
-         title: Text(AppHelpers.getHomePageNameByLocale(currency,_locale),style: TextStyle(color: Colors.black),),
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Color(0xFF01CED8),
+        title: Text(
+         '${translate?.currencyConverter}',style: TextStyle(color: Colors.black),
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.calendar_month,color: Colors.black,),
+            icon: Icon(
+              Icons.calendar_month,
+            ),
             onPressed: () async {
               final DateTime? changedDate = await showDatePicker(
                   context: context,
                   initialDate: _selectedDate,
                   firstDate:
-                      (DateTime.now().subtract(const Duration(days: 30))),
+                  (DateTime.now().subtract(const Duration(days: 30))),
                   lastDate: DateTime.now());
               if (changedDate != null) {
                 setState(() {
@@ -119,38 +126,48 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
             onSelected: (value) {
-              setState(() {
-                _locale = value;
-              });
+              switch(value) {
+                case 'uz':
+                  provider.setLocale('uz','');
+                  break;
+                case 'ru':
+                  provider.setLocale('ru','');
+                  break;
+                case 'en':
+                  provider.setLocale('en','');
+                  break;
+              }
             },
           ),
         ],
       ),
-      backgroundColor: Colors.lightBlueAccent,
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : SmartRefresher(
-                    controller: _refreshController,
-                    onRefresh: _refreshCurency,
-                    child: ListView.builder(
-                        itemCount: _currencies.length,
-                        itemBuilder: (context, index) {
-                          return CurrencyItems(
-                            currency: _currencies[index],
-                            locale: _locale,
-                          );
-                        }),
-                  ),
-          ),
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color(0xFF00D0CE),
+            Color(0xFF82E58A)
+          ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight
+
+          )
+        ),
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : SmartRefresher(
+          controller: _refreshController,
+          onRefresh: _refreshCurency,
+          child: ListView.builder(
+              itemCount: _currencies.length,
+              itemBuilder: (context, index) {
+                return CurrencyItems(
+                  currency: _currencies[index],
+                  locale: provider.locale?.languageCode ?? 'en',
+                  selectedDate: _selectedDate,
+                );
+              }),
+        ),
       ),
     );
   }
 }
-
-

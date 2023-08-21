@@ -1,10 +1,59 @@
 {
-  "enterValue": "Enter the value",
-  "@enterValue": {
-    "description": "Enter"
-  },
+
   "currencyConverter": "Currency converter",
   "@currencyConverter" : {
     "description": "Converter"
+  },
+
+  "rateonplaymarket": "Rate on Play Market",
+  "@rateonplaymarket" : {
+    "description": "Rate"
+  },
+  "programcode": "Program code",
+  "@programcode" : {
+    "description": "Rate"
+  },
+  "ourtelegramchannel": "Our Telegram Channel",
+  "@ourtelegramchannel" : {
+    "description": "Rate"
+  },
+  "weareonfacebook": "We Are On Facebook",
+  "@weareonfacebook" : {
+    "description": "Rate"
+  },
+  "weareontwitter": "We Are On Twitter",
+  "@weareontwitter" : {
+    "description": "Rate"
+  },
+  "weareoninstagram": "We Are On Instagram",
+  "@weareoninstagram" : {
+    "description": "Rate"
+  },
+  "opinionforconsideration": "Opinion For Consideration",
+  "@opinionforconsideration" : {
+    "description": "Rate"
+  },
+  "abouttheprogram": "About The Program",
+  "@abouttheprogram" : {
+    "description": "Rate"
+  },
+  "thebank": "Central Bank of Uzbekistan",
+  "@thebank" : {
+    "description": "bank"
+  },
+  "banktexti": " prepared on the basis of open data. The software is open source and ",
+  "@banktexti" : {
+    "description": "bank"
+  },
+  "banktext": " distributed based on.",
+  "@banktext" : {
+    "description": "bank"
+  },
+  "uzbeksum": "Uzbek soum",
+  "@uzbeksum" : {
+    "description": "bank"
   }
+
+
+
 }
