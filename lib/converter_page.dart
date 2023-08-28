@@ -96,14 +96,20 @@ class _ConverterPageState extends State<ConverterPage> {
                cursorWidth: 2,
                 controller: textEditingController,
                 cursorColor: Colors.black,
-                onChanged: (value) {
+                onChanged: (value) {l
                   setState(() {
                     if (value.isEmpty) {
                       _calculatedSum = 0;
                     }
                     else {
-                      _calculatedSum = double.parse(widget.currency.rate ?? '') *
-                          double.parse(value);
+                      if (isUzsMain) {
+                        _calculatedSum = double.parse(value) / double.parse(widget.currency.rate ?? '');
+                      }
+                      else {
+
+                        _calculatedSum = double.parse(widget.currency.rate ?? '') *
+                            double.parse(value);
+                      }
                     }
                   });
 
