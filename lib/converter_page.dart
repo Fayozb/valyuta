@@ -1,17 +1,17 @@
 
 import 'package:currency_converter/currency_Historyitems.dart';
-import 'package:currency_converter/currency_items.dart';
-import 'package:dio/dio.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'app_helpers.dart';
-import 'app_provider.dart';
+
 import 'currency.dart';
-import 'currency_items.dart';
-import 'home_page.dart';
-import 'currency.dart';
+
+
+
 import 'http_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ConverterPage extends StatefulWidget {
@@ -74,21 +74,21 @@ class _ConverterPageState extends State<ConverterPage> {
   Widget build(BuildContext context) {
     final translate = AppLocalizations.of(context);
     return Scaffold(
-      backgroundColor: Color(0xFF00DDCE),
+      backgroundColor: const Color(0xFF00DDCE),
       appBar: AppBar(
-        backgroundColor: Color(0xFF01CED8),
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: const Color(0xFF01CED8),
+        iconTheme: const IconThemeData(color: Colors.black),
         elevation: 10,
-        title: Text('${translate?.currencyConverter}',style: TextStyle(color: Colors.black),
+        title: Text('${translate?.currencyConverter}',style: const TextStyle(color: Colors.black),
            ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(height: 24,),
+              const SizedBox(height: 24,),
               TextFormField(
 
                 textAlign: TextAlign.end,
@@ -96,7 +96,7 @@ class _ConverterPageState extends State<ConverterPage> {
                cursorWidth: 2,
                 controller: textEditingController,
                 cursorColor: Colors.black,
-                onChanged: (value) {l
+                onChanged: (value) {
                   setState(() {
                     if (value.isEmpty) {
                       _calculatedSum = 0;
@@ -119,18 +119,18 @@ class _ConverterPageState extends State<ConverterPage> {
 
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.black, width: 2)
+                    borderSide: const BorderSide(color: Colors.black, width: 2)
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.black,width: 2),
+                    borderSide: const BorderSide(color: Colors.black,width: 2),
 
                   )
                 ),
 
 
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
 
@@ -149,37 +149,37 @@ class _ConverterPageState extends State<ConverterPage> {
                   }
 
                 });
-              }, icon: Icon(FlutterRemix.repeat_2_fill)),
-              SizedBox(height: 20,),
+              }, icon: const Icon(FlutterRemix.repeat_2_fill)),
+              const SizedBox(height: 20,),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.black,width: 2)
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
                 alignment: Alignment.centerRight,
                 child: Text(
                   NumberFormat.currency(symbol: '${isUzsMain? widget.currency.ccy : "UZS"}  ')
-                      .format(double.tryParse('${_calculatedSum} ')),
-                  style: TextStyle(
+                      .format(double.tryParse('$_calculatedSum ')),
+                  style: const TextStyle(
                       fontWeight: FontWeight.w300,
                       fontSize: 14,
                       color: Colors.black45),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
 
                 isUzsMain?Text(AppHelpers.getCurrencyTitleByLocale(
                     widget.currency, widget.locale)):Text('${translate?.uzbeksum}'),
-              SizedBox(height: 40,),
+              const SizedBox(height: 40,),
               ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: currencyHistorys.length,
                   shrinkWrap: true,
                   itemBuilder: (context,index){
                 return CurrencyHistoryItems(currency: currencyHistorys[index], locale: widget.locale);
               }),
-              SizedBox(height: 40,)
+              const SizedBox(height: 40,)
             ],
           ),
         ),

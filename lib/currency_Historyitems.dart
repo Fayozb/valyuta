@@ -1,10 +1,7 @@
-import 'package:currency_converter/app_helpers.dart';
-import 'package:currency_converter/converter_page.dart';
+
 import 'package:currency_converter/currency.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'home_page.dart';
 
 class CurrencyHistoryItems extends StatelessWidget {
   final Currency currency;
@@ -21,7 +18,7 @@ class CurrencyHistoryItems extends StatelessWidget {
     return Container(
       color: Colors.white.withOpacity(0.2),
       padding: const EdgeInsets.all(16),
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         children: [
           Expanded(
@@ -37,17 +34,17 @@ class CurrencyHistoryItems extends StatelessWidget {
                   double.tryParse('${currency.rate} '),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Text(
-                '${(currency.diff?.startsWith('-') ?? false) ? '${currency.diff}' : '+${currency.diff}'}',
+                (currency.diff?.startsWith('-') ?? false) ? '${currency.diff}' : '+${currency.diff}',
                 style: TextStyle(
                     color: (currency.diff?.startsWith('-') ?? false)
                         ? Colors.red[800]
                         : Colors.green[800]),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               (currency.diff?.startsWith('-') ?? false)

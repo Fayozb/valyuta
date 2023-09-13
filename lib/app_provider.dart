@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 
 import 'local_source.dart';
 
-import 'local_source.dart';
-
 class AppProvider extends ChangeNotifier {
   Locale? get locale {
-    final String _script = LocalSource.instance.getScriptCode();
-    final String _code = LocalSource.instance.getLocaleCode();
-    if (_script.isEmpty) {
-      return Locale.fromSubtags(languageCode: _code);
+    final String script = LocalSource.instance.getScriptCode();
+    final String code = LocalSource.instance.getLocaleCode();
+    if (script.isEmpty) {
+      return Locale.fromSubtags(languageCode: code);
     } else {
-      return Locale.fromSubtags(languageCode: _code, scriptCode: _script);
+      return Locale.fromSubtags(languageCode: code, scriptCode: script);
     }
   }
 

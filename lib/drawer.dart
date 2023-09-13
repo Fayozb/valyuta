@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 
-import 'package:currency_converter/app_helpers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-String _locale = 'uz';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
@@ -18,7 +16,7 @@ class HomeDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
 
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
 
           gradient: LinearGradient(
             colors: [
@@ -45,7 +43,7 @@ class HomeDrawer extends StatelessWidget {
                 const SizedBox(height: 10),
                  Text(
                   '${translate?.currencyConverter}',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: Colors.black),
@@ -141,19 +139,19 @@ class HomeDrawer extends StatelessWidget {
                               children: [
                                 Text(
                                   '${translate?.currencyConverter}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 20),
                                 ),
-                                SizedBox(height: 10),
-                                Text(
+                                const SizedBox(height: 10),
+                                const Text(
                                   'v1.0.0'
                                   '',
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 RichText(
@@ -161,7 +159,7 @@ class HomeDrawer extends StatelessWidget {
                                     text: TextSpan(
                                         text:
                                             '${translate?.thebank}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Color(0xFF007C70),
                                             fontSize: 16,
                                             decoration:
@@ -175,11 +173,11 @@ class HomeDrawer extends StatelessWidget {
                                           TextSpan(
                                               text:
                                                   '${translate?.banktexti}',
-                                              style: TextStyle(fontSize: 16,color: Colors.black,decoration: TextDecoration.none),),
+                                              style: const TextStyle(fontSize: 16,color: Colors.black,decoration: TextDecoration.none),),
                                           TextSpan(
                                             text:
                                             'Apache License',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Color(0xFF007C70),
                                                 fontSize: 16,
                                                 decoration:
@@ -191,14 +189,14 @@ class HomeDrawer extends StatelessWidget {
                                               },
                                           ),
                                           TextSpan(
-                                            text: '${translate?.banktext}',style: TextStyle(fontSize: 16,color: Colors.black,decoration: TextDecoration.none)
+                                            text: '${translate?.banktext}',style: const TextStyle(fontSize: 16,color: Colors.black,decoration: TextDecoration.none)
                                           )
                                         ]
                                     )
                                 ),
-                                SizedBox(height: 30,),
-                                Text('@Fayoz_bek'),
-                                SizedBox(height: 20,),
+                                const SizedBox(height: 30,),
+                                const Text('@Fayoz_bek'),
+                                const SizedBox(height: 20,),
                                 Container(
                                   padding: const EdgeInsets.all(16),
                                   decoration: const BoxDecoration(
@@ -216,7 +214,7 @@ class HomeDrawer extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       'Ok',
                                     ),
                                   ),
@@ -250,7 +248,7 @@ class HomeDrawer extends StatelessWidget {
       leading: Icon(iconData, color: Colors.black),
       title: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
       ),
     );

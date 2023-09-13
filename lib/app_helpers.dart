@@ -1,6 +1,6 @@
-import 'package:currency_converter/currency_items.dart';
+
 import 'currency.dart';
-import 'home_page.dart';
+
 
 class AppHelpers {
   static Currency getCurrentcurrency(List<Currency> histories, Currency currency) {
