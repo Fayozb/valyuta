@@ -20,6 +20,7 @@ dependencies:
   url_launcher: ^6.1.12
   flutter_native_splash: ^2.2.17
   shared_preferences: ^2.2.0
+  keyboard_dismisser: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -12,12 +12,9 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final translate = AppLocalizations.of(context);
-
     return Drawer(
       child: Container(
-
         decoration: const BoxDecoration(
-
           gradient: LinearGradient(
             colors: [
               Color(0xFF00D0CE),
@@ -41,7 +38,7 @@ class HomeDrawer extends StatelessWidget {
                   height: 120,
                 ),
                 const SizedBox(height: 10),
-                 Text(
+                Text(
                   '${translate?.currencyConverter}',
                   style: const TextStyle(
                       fontSize: 20,
@@ -64,7 +61,7 @@ class HomeDrawer extends StatelessWidget {
                   '${translate?.programcode}',
                   () {
                     launchUrl(
-                      Uri.parse('https://github.com/Fayozb/valyuta-kursi'),
+                      Uri.parse('https://github.com/Fayozb/valyuta'),
                     );
                   },
                 ),
@@ -157,8 +154,7 @@ class HomeDrawer extends StatelessWidget {
                                 RichText(
                                     textAlign: TextAlign.center,
                                     text: TextSpan(
-                                        text:
-                                            '${translate?.thebank}',
+                                        text: '${translate?.thebank}',
                                         style: const TextStyle(
                                             color: Color(0xFF007C70),
                                             fontSize: 16,
@@ -171,32 +167,41 @@ class HomeDrawer extends StatelessWidget {
                                           },
                                         children: [
                                           TextSpan(
-                                              text:
-                                                  '${translate?.banktexti}',
-                                              style: const TextStyle(fontSize: 16,color: Colors.black,decoration: TextDecoration.none),),
+                                            text: '${translate?.banktexti}',
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                decoration:
+                                                    TextDecoration.none),
+                                          ),
                                           TextSpan(
-                                            text:
-                                            'Apache License',
+                                            text: 'Apache License',
                                             style: const TextStyle(
                                                 color: Color(0xFF007C70),
                                                 fontSize: 16,
                                                 decoration:
-                                                TextDecoration.underline),
+                                                    TextDecoration.underline),
                                             recognizer: TapGestureRecognizer()
                                               ..onTap = () {
-                                                launchUrl(
-                                                    Uri.parse('https://www.apache.org'));
+                                                launchUrl(Uri.parse(
+                                                    'https://www.apache.org'));
                                               },
                                           ),
                                           TextSpan(
-                                            text: '${translate?.banktext}',style: const TextStyle(fontSize: 16,color: Colors.black,decoration: TextDecoration.none)
-                                          )
-                                        ]
-                                    )
+                                              text: '${translate?.banktext}',
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.black,
+                                                  decoration:
+                                                      TextDecoration.none))
+                                        ])),
+                                const SizedBox(
+                                  height: 30,
                                 ),
-                                const SizedBox(height: 30,),
                                 const Text('@Fayoz_bek'),
-                                const SizedBox(height: 20,),
+                                const SizedBox(
+                                  height: 20,
+                                ),
                                 Container(
                                   padding: const EdgeInsets.all(16),
                                   decoration: const BoxDecoration(
@@ -209,7 +214,6 @@ class HomeDrawer extends StatelessWidget {
                                       end: Alignment.bottomRight,
                                     ),
                                   ),
-
                                   child: ElevatedButton(
                                     onPressed: () {
                                       Navigator.pop(context);

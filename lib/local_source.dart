@@ -1,7 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 class LocalSource {
   static SharedPreferences? _preferences;
 
@@ -42,7 +40,8 @@ class LocalSource {
   Future<void> setLocaleScriptCode(String script) async =>
       await _preferences?.setString('keyLocaleScriptCode', script);
 
-  String getScriptCode() => _preferences?.getString('keyLocaleScriptCode') ?? '';
+  String getScriptCode() =>
+      _preferences?.getString('keyLocaleScriptCode') ?? '';
 
   Future<void> clear() async {
     await _preferences!.clear();

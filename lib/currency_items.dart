@@ -8,11 +8,12 @@ class CurrencyItems extends StatelessWidget {
   final Currency currency;
   final String locale;
   final DateTime selectedDate;
+
   const CurrencyItems({
     super.key,
     required this.currency,
     required this.locale,
-    required this.selectedDate
+    required this.selectedDate,
   });
 
   @override
@@ -53,7 +54,9 @@ class CurrencyItems extends StatelessWidget {
                   width: 20,
                 ),
                 Text(
-                  (currency.diff?.startsWith('-') ?? false) ? '${currency.diff}' : '+${currency.diff}',
+                  (currency.diff?.startsWith('-') ?? false)
+                      ? '${currency.diff}'
+                      : '+${currency.diff}',
                   style: TextStyle(
                       color: (currency.diff?.startsWith('-') ?? false)
                           ? Colors.red[800]

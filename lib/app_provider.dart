@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'local_source.dart';
 
 class AppProvider extends ChangeNotifier {
@@ -19,7 +18,6 @@ class AppProvider extends ChangeNotifier {
     LocalSource.instance.setLocaleScriptCode(scriptCode ?? '');
     notifyListeners();
   }
-
 
   void clearLocale() {
     LocalSource.instance.clear();
